@@ -41,6 +41,7 @@ resource "azurerm_resource_group" "main" {
   location = "CentralUS"
 }
 
+
 resource "azurerm_container_registry" "acr" {
   name                = "acr${random_id.id.hex}"
   resource_group_name = azurerm_resource_group.main.name
