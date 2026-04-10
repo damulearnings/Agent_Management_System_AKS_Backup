@@ -1,18 +1,18 @@
 # 1. Define the Azure Storage Resources
-resource "azurerm_resource_group" "velero-BSL" {
+resource "azurerm_resource_group" "velero-bsl" {
   name     = "velero-BSL-backup-rg"
   location = "East US"
 }
 
 resource "azurerm_storage_account" "velero-BSL" {
   name                     = "velerobslstorageaccount"
-  resource_group_name      = azurerm_resource_group.velero-BSL.name
-  location                 = azurerm_resource_group.velero-BSL.location
+  resource_group_name      = azurerm_resource_group.velero-bsl.name
+  location                 = azurerm_resource_group.velero-bsl.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_container" "velero-BSL" {
+resource "azurerm_storage_container" "velero-bsl-d" {
   name                  = "velero-bsl-backups"
   storage_account_name  = azurerm_storage_account.velero-BSL.name
   container_access_type = "private"
