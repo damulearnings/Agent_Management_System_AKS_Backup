@@ -54,7 +54,7 @@ jobs:
       - name: Get AKS Credentials
         uses: azure/aks-set-context@v3
         with:
-          resource-group: 'RG-AKS-Enterprise-Backup'
+          resource-group: 'RG-AKS-Enterprise-backup'
           cluster-name: 'aks-cluster' # REPLACE with your actual AKS name
 
       - name: Generate Unique Backup and Apply

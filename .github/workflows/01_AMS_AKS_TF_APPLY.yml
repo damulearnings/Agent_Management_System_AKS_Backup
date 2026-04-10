@@ -81,6 +81,7 @@ jobs:
       #    ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
       #- name: Terraform Output
+      #  run: terraform -chdir="../Azure_Cloud_Deployment/Infra_IAC/" output
       
     
 
