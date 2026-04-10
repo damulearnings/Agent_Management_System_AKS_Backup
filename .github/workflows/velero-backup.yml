@@ -73,3 +73,7 @@ jobs:
           echo "Verifying backup status..."
           sleep 5
           kubectl get backup $UNIQUE_NAME -n velero
+
+
+
+          
