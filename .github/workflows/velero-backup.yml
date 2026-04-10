@@ -40,14 +40,14 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Terraform Init
-        run: terraform -chdir="Agent_Management_System_AKS_Backup" init    
+        run: terraform -chdir="../Agent_Management_System_AKS_Backup" init    
 
       - name: Terraform Plan
-        run: terraform -chdir="Agent_Management_System_AKS_Backup" plan
+        run: terraform -chdir="../Agent_Management_System_AKS_Backup" plan
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: terraform -chdir="Agent_Management_System_AKS_Backup" apply -auto-approve
+        run: terraform -chdir="../Agent_Management_System_AKS_Backup" apply -auto-approve
 
       # --- NEW STEPS TO CONNECT TO AKS AND RUN BACKUP ---
 
