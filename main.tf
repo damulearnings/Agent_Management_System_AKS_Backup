@@ -73,7 +73,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     name       = "system"
     vm_size    = "Standard_D2s_v3"
     node_count = 1
-    orchestration_version = "1.34"
+    orchestrator_version = "1.34"
   }
 
   network_profile {
