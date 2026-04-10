@@ -1,15 +1,15 @@
 # 1. Create the Azure AD Application & Service Principal
-resource "azuread_application" "velero" {
+resource "azuread_application" "velerod" {
   display_name = "velero-backup-sp"
 }
 
-resource "azuread_service_principal" "velero" {
-    client_id = azuread_application.velero.client_id 
-  #application_id = azuread_application.velero.application_id
+resource "azuread_service_principal" "velerod" {
+    client_id = azuread_application.velerod.client_id 
+  #application_id = azuread_application.velerod.application_id
 }  
 
-resource "azuread_service_principal_password" "velero" {
-  service_principal_id = azuread_service_principal.velero.id
+resource "azuread_service_principal_password" "velerod" {
+  service_principal_id = azuread_service_principal.velerod.id
 }
 
 # 2. Grant the Service Principal "Contributor" access to the Backup Storage Account
@@ -17,7 +17,7 @@ resource "azuread_service_principal_password" "velero" {
 resource "azurerm_role_assignment" "velero_storage_access" {
   scope                = azurerm_storage_account.velero.id
   role_definition_name = "Contributor"
-  principal_id         = azuread_service_principal.velero.object_id
+  principal_id         = azuread_service_principal.velerod.object_id
 }
 
 # 3. Create the Kubernetes Secret for Velero
@@ -31,9 +31,9 @@ resource "kubernetes_secret" "velero_credentials" {
     cloud = <<EOF
 AZURE_SUBSCRIPTION_ID=${data.azurerm_client_config.current.subscription_id}
 AZURE_TENANT_ID=${data.azurerm_client_config.current.tenant_id}
-AZURE_CLIENT_ID=${azuread_application.velero.client_id}
-AZURE_CLIENT_SECRET=${azuread_service_principal_password.velero.value}
-AZURE_RESOURCE_GROUP=${azurerm_resource_group.velero-bsl.name}
+AZURE_CLIENT_ID=${azuread_application.velerod.client_id}
+AZURE_CLIENT_SECRET=${azuread_service_principal_password.velerod.value}
+AZURE_RESOURCE_GROUP=${azurerm_resource_group.velero-bslda.name}
 AZURE_CLOUD_NAME=AzurePublicCloud
 EOF
   }

@@ -38,7 +38,7 @@ resource "random_id" "id" {
 
 resource "azurerm_resource_group" "main" {
   name     = "RG-AKS-Enterprise-backup"
-  location = "CentralUS"
+  location = "eastus"
 }
 
 
@@ -71,7 +71,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name       = "system"
-    vm_size    = "Standard_D2s_v3"
+    vm_size    = "Standard_B1s"
     node_count = 1
     orchestrator_version = "1.34"
   }
@@ -91,7 +91,6 @@ provider "helm" {
     cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config.0.cluster_ca_certificate)
   }
 }
-
 
 resource "helm_release" "velero" {
   name       = "velero"
