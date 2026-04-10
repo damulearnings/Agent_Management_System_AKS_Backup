@@ -1,13 +1,13 @@
 # 1. Define the Azure Storage Resources
-resource "azurerm_resource_group" "velero-bslda" {
+resource "azurerm_resource_group" "velero-bsldamu" {
   name     = "velero-BSL-backup-damu"
   location = "East US"
 }
 
 resource "azurerm_storage_account" "velero-BSL-acc" {
   name                     = "velerobslstorageacc"
-  resource_group_name      = azurerm_resource_group.velero-bslda.name
-  location                 = azurerm_resource_group.velero-bslda.location
+  resource_group_name      = azurerm_resource_group.velero-bsldamu.name
+  location                 = azurerm_resource_group.velero-bsldamu.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
@@ -33,8 +33,8 @@ resource "azurerm_storage_container" "velero-bsl-d" {
 #        "bucket" = azurerm_storage_container.velero-BSL.name
 #      }
 #      "config" = {
-#        "resourceGroup"  = azurerm_resource_group.velero-BSL.name
-#        "storageAccount" = azurerm_storage_account.velero-BSL.name
+#        "resourceGroup"  = azurerm_resource_group.velero-bsldamu.name
+#        "storageAccount" = azurerm_storage_account.velero-bsldamu.name
 #        "subscriptionId" = "your-azure-subscription-id"
 #      }
 #      "credential" = {

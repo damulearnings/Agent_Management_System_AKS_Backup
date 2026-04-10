@@ -37,7 +37,7 @@ resource "random_id" "id" {
 # Resource_Group + Container_Registry + AKS + Storage_Account + Storage_Container 
 
 resource "azurerm_resource_group" "main" {
-  name     = "RG-AKS-Enterprise-backup"
+  name     = "RG-AKS-Enterprise-damubackup"
   location = "eastus"
 }
 
@@ -308,7 +308,7 @@ resource "azurerm_role_assignment" "terraform_owner_subscription" {
 #Assign Owner at Resource Group Level
 /*
 data "azurerm_resource_group" "velero_rg" {
-  name = "RG-AKS-Enterprise-Backup"
+  name = "RG-AKS-Enterprise-damubackup"
 }
 
 data "azurerm_client_config" "current" {}
