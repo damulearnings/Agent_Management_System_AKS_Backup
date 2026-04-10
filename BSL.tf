@@ -45,3 +45,5 @@ resource "azurerm_storage_container" "velero-bsl-d" {
 #    }
 #  }
 #}
+
+#resourceGroupsample
